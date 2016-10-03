@@ -1,0 +1,25 @@
+.logo{
+  padding-bottom: 30px;
+  font-weight: bold;
+  font-size: 7em;
+}
+
+.signup{
+  width: 100%;
+}
+
+.signupForm{
+  padding: 40px !important;
+  width: 50%;
+}
+
+.helloWrapper{
+  width: 100%;
+  padding: 30px;
+}
+
+h1.hello{
+  font-weight: bold;
+  font-size: 6em;
+  padding-bottom: 20px;
+}
