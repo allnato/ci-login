@@ -5,6 +5,18 @@
 }
 
 .profile-form{
-  padding: 40px;
+  padding: 40px !important;
   width: 50%;
+}
+
+#saveButton{
+  visibility: hidden;
+}
+
+#formButton{
+  display: none;
+}
+
+.navigation{
+  color: white !important;
 }
