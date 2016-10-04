@@ -1,0 +1,10 @@
+.header{
+  font-weight: bold;
+  font-size: 5.5em;
+  padding-bottom: 40px;
+}
+
+.profile-form{
+  padding: 40px;
+  width: 50%;
+}
