@@ -1,0 +1,17 @@
+.greet{
+  padding-top: 90px;
+  font-size: 9em;
+  font-weight: bold;
+}
+
+.navigation{
+  color: white;
+  text-decoration: none;
+  text-decoration-color: white;
+}
+
+footer{
+   position:absolute;
+   width: inherit;
+   bottom:0;
+}

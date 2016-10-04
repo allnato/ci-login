@@ -1,0 +1,22 @@
+.header{
+  font-weight: bold;
+  font-size: 5.5em;
+  padding-bottom: 40px;
+}
+
+.profile-form{
+  padding: 40px !important;
+  width: 50%;
+}
+
+#saveButton{
+  visibility: hidden;
+}
+
+#formButton{
+  display: none;
+}
+
+.navigation{
+  color: white !important;
+}

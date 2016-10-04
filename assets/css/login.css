@@ -1,0 +1,30 @@
+.logo{
+  padding-bottom: 30px;
+  font-weight: bold;
+  color: white;
+  font-size: 7em;
+}
+
+.login{
+  margin: 0 auto;
+  width: 400px;
+
+}
+
+.loginForm{
+  padding: 40px;
+}
+
+.submitButton{
+  padding-top: 40px;
+}
+
+.createAccount{
+  padding-top: 30px;
+  margin: 0 auto;
+}
+
+.createAccount > a{
+  color: white;
+  margin: 0 auto;
+}
