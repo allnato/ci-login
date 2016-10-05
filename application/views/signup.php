@@ -5,8 +5,8 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <meta http-equiv="X-UA-Compatible" content="ie=edge">
   <title>Hello | Sign-Up</title>
-  <link rel="stylesheet" href="../../assets/css/materialize.min.css">
-  <link rel="stylesheet" href="../../assets/css/signup.css">
+  <link rel="stylesheet" href="<?php echo base_url();?>assets/css/materialize.min.css">
+  <link rel="stylesheet" href="<?php echo base_url();?>assets/css/signup.css">
 </head>
 <body class="teal accent-3">
   <div class="wrapper">
@@ -66,6 +66,6 @@
 
 </body>
 <!-- Jquery & Materialize Scripts -->
-<script type="text/javascript" src="../../assets/js/jquery-3.1.0.min.js"></script>
-<script type="text/javascript" src="../../assets/js/materialize.min.js"></script>
+<script type="text/javascript" src="<?php echo base_url();?>assets/js/jquery-3.1.0.min.js"></script>
+<script type="text/javascript" src="<?php echo base_url();?>assets/js/materialize.min.js"></script>
 </html>

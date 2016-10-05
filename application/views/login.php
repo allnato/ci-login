@@ -7,8 +7,8 @@
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <title>Hello | Login</title>
     <!-- Materialize stylesheet -->
-    <link rel="stylesheet" href="../../assets/css/materialize.min.css">
-    <link rel="stylesheet" href="../../assets/css/login.css">
+    <link rel="stylesheet" href="<?php echo base_url();?>assets/css/materialize.min.css">
+    <link rel="stylesheet" href="<?php echo base_url();?>assets/css/login.css">
   </head>
 
   <body class="indigo darken-2">
@@ -21,8 +21,8 @@
           <!-- Login Form -->
 
           <div class="loginForm z-depth-1 grey lighten-4">
-            <form action="">
-
+            <p class="center-align red-text error">Invalid login credenials.</p>
+            <form action="<?php echo site_url('verifyLogin');?>" method="post">
               <div class="input-field">
                 <input type="email" id="email" name="email" class="validate" required>
                 <label for="email">Email</label>
@@ -53,6 +53,18 @@
   </body>
 
   <!-- Jquery & Materialize Scripts -->
-  <script type="text/javascript" src="../../assets/js/jquery-3.1.0.min.js"></script>
-  <script type="text/javascript" src="../../assets/js/materialize.min.js"></script>
+  <script src="<?php echo base_url();?>assets/js/jquery-3.1.0.min.js"></script>
+  <script src="<?php echo base_url();?>assets/js/materialize.min.js"></script>
+  <script type="text/javascript">
+    var error = false;
+    <?php if(isset($error)): ?>
+    var error = true;
+    <?php endif ?>
+
+    if(error){
+      //Materialize.toast('Invalid Login Credentials', 4000);
+      $('.error').css('visibility', 'visible');
+    }
+
+  </script>
 </html>

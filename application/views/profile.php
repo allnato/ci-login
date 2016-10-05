@@ -7,8 +7,8 @@
   <title>Hello | Profile</title>
 
   <!-- Materialize stylesheet -->
-  <link rel="stylesheet" href="../../assets/css/materialize.min.css">
-  <link rel="stylesheet" href="../../assets/css/profile.css">
+  <link rel="stylesheet" href="<?php echo base_url();?>assets/css/materialize.min.css">
+  <link rel="stylesheet" href="<?php echo base_url();?>assets/css/profile.css">
   <link href="https://fonts.googleapis.com/icon?family=Material+Icons"
       rel="stylesheet">
 </head>
@@ -76,8 +76,8 @@
 </body>
 
 <!-- Jquery & Materialize Scripts -->
-<script type="text/javascript" src="../../assets/js/jquery-3.1.0.min.js"></script>
-<script type="text/javascript" src="../../assets/js/materialize.min.js"></script>
+<script type="text/javascript" src="<?php echo base_url();?>assets/js/jquery-3.1.0.min.js"></script>
+<script type="text/javascript" src="<?php echo base_url();?>assets/js/materialize.min.js"></script>
 <script type="text/javascript">
   $(document).ready(function() {
     $('#saveButton').css('visibility', 'hidden');
@@ -129,10 +129,10 @@
 
         $('#saveButton').css('visibility', 'hidden');
 
-         Materialize.toast('Changes Saved :)', 4000)
+         Materialize.toast('Changes Saved :)', 4000);
         // Create AJAX Here.
       } else{
-         Materialize.toast('Invalid Changes.', 4000)
+         Materialize.toast('Invalid Changes.', 4000);
       }
 
 
