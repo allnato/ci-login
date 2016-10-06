@@ -71,4 +71,9 @@ class Model extends CI_Model{
     }
     return false;
   }
+
+  public function addUser($newUserData){
+    $query = $this->db->insert('users', $newUserData);
+    return $query;
+  }
 }

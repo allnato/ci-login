@@ -59,3 +59,5 @@ $route['login'] = 'Controller/login';
 $route['logout'] = 'Controller/logout';
 $route['profile'] = 'Controller/profile';
 $route['editProfile'] = 'Controller/editProfile';
+$route['signup'] = 'Controller/signup';
+$route['addUser'] = 'Controller/addUser';

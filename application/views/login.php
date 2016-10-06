@@ -41,7 +41,8 @@
           </div>
 
           <div class="createAccount center-align">
-            <a class="waves-effect waves-light waves-red btn-flat center-align">Create an Account.</a>
+            <a class="waves-effect waves-light waves-red btn-flat center-align"
+            href="<?php echo site_url('signup'); ?>">Create an Account.</a>
           </div>
 
 

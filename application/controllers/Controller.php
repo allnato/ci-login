@@ -120,4 +120,37 @@ class Controller extends CI_Controller{
 
   }
 
+  public function signup(){
+    // Check if Session exist
+    if($this->checkSession()){
+      redirect(site_url('login'));
+    }
+    $this->load->view('signup');
+  }
+
+
+  public function addUser(){
+    $newUserData = array(
+      'firstname' => $this->input->post('firstname'),
+      'lastname' => $this->input->post('lastname'),
+      'email' => $this->input->post('email'),
+      'address' => $this->input->post('address')
+    );
+
+    $this->load->model('Model');
+    $this->Model->addUser($newUserData);
+
+    $userID = $this->Model->getUserID($this->input->post('email'));
+    $sessionData = array(
+      'userid' => $userID,
+      'firstname' => $this->input->post('firstname'),
+      'email' => $this->input->post('email'),
+      'logged_in' => true
+    );
+
+    $this->session->set_userdata($sessionData);
+
+    redirect(site_url('home'));
+  }
+
 }
