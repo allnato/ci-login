@@ -9,8 +9,10 @@ class Controller extends CI_Controller{
    * Load the login page by default.
    */
   public function index(){
-
-    $this->load->view('login');
+    if($this->checkSession()){
+      redirect(site_url('home'));
+    }
+    redirect(site_url('login'));
   }
 
   public function verifyLogin(){
@@ -26,11 +28,13 @@ class Controller extends CI_Controller{
     if($this->Model->verifyLogin($loginData)){
 
       // Get the login data of the user.
-      $userData = $this->Model->getUserData($loginData['email']);
+      $userID = $this->Model->getUserID($loginData['email']);
+      $userData = $this->Model->getUserData($userID);
       // Create Session Information
       $sessionData = array(
+        'userid' => $userData['userid'],
         'firstname' => $userData['firstname'],
-        'email' => $userData['email'],
+        'email' => $loginData['email'],
         'logged_in' => true
       );
       // Create Session Instance
@@ -43,18 +47,77 @@ class Controller extends CI_Controller{
     $this->load->view('login', $loginAction);
   }
 
+  public function login(){
+    if($this->checkSession()){
+      redirect(site_url('home'));
+    }
+    $this->load->view('login');
+  }
+
   public function home(){
+    // If no session exist.
+    if(!$this->checkSession()){
+      $this->load->view('login');
+      return;
+    }
+    // else
     $homeData['name'] = $this->session->userdata('firstname');
     $this->load->view('home', $homeData);
   }
 
   public function profile(){
+    // If no session exist.
+    if(!$this->checkSession()){
+      $this->load->view('login');
+      return;
+    }
+    // else
 
-    $this->load->view('profile');
+    // Load model to get user data.
+    $this->load->model('Model');
+    $data['userData'] = $this->Model->getUserData($this->session->userdata('userid'));
+    $this->load->view('profile', $data);
   }
 
   public function logout(){
-
-    $this->load->view('login');
+    // Destroy Session;
+    $this->session->sess_destroy();
+    redirect(site_url());
   }
+
+  /**
+   * Checks if a session exists.
+   * @return bool true if session exist otherwise, false
+   */
+  public function checkSession(){
+    if($this->session->has_userdata('firstname')){
+      return true;
+    }
+    return false;
+  }
+
+  public function editProfile(){
+    $editedData = array(
+      'firstname' => $this->input->post('firstname'),
+      'lastname' => $this->input->post('lastname'),
+      'email' => $this->input->post('email'),
+      'address' => $this->input->post('address')
+    );
+    $this->load->model('Model');
+    $result = $this->Model->updateProfile($editedData);
+    $this->updateSession();
+    echo json_encode($result);
+  }
+
+  public function updateSession(){
+    $this->load->model('Model');
+    $userid = $this->session->userdata('userid');
+
+    $userData = $this->Model->getUserData($userid);
+
+    $this->session->set_userdata('firstname', $userData['firstname']);
+    $this->session->set_userdata('email', $userData['email']);
+
+  }
+
 }

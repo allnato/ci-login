@@ -28,19 +28,47 @@ class Model extends CI_Model{
     return true;
   }
 
-  public function getUserData($email){
+  public function getUserData($userid){
     $this->db->select('*');
     $this->db->from('users');
-    $this->db->where('email', $email);
+    $this->db->where('userid', $userid);
     $result = $this->db->get();
+
+    if($result->num_rows() == 0){
+      return false;
+    }
+
     $row = $result->row();
+
     $userData = array(
       'firstname' => $row->firstname,
       'lastname' => $row->lastname,
-      'email' => $row->birthdate,
-      'address' => $row->address
+      'address' => $row->address,
+      'email' => $row->email,
+      'userid' => $row->userid
     );
 
     return $userData;
+  }
+
+  public function updateProfile($editedData){
+    $userid = $this->session->userdata('userid');
+    $this->db->where('userid', $userid);
+    $this->db->update('users', $editedData);
+
+    return ($this->db->affected_rows() != 1) ? false : true;
+  }
+
+  public function getUserID($email){
+
+    $this->db->select('userid');
+    $this->db->from('users');
+    $this->db->where('email', $email);
+
+    $result = $this->db->get();
+    if($result->num_rows() > 0){
+      return $result->row()->userid;
+    }
+    return false;
   }
 }

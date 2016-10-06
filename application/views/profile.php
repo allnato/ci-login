@@ -1,3 +1,5 @@
+<?php
+?>
 <!DOCTYPE html>
 <html>
 <head>
@@ -22,35 +24,41 @@
       <div class="row">
         <div class="col m6 s12 ">
           <h1 class="navigation header white-text">
-            <a href="" class="white-text">home</a>
+            <a href="<?php echo site_url('home')?>" class="white-text">home</a>
             //
-            <a href="" class="white-text">logout</a>
+            <a href="<?php echo site_url('logout')?>" class="white-text">logout</a>
           </h1>
         </div>
         <div class="col m6 s12 profile-form z-depth-2 grey lighten-4">
           <form id="profileForm" method="post" action="">
 
             <div class="input-field">
-              <input type="text" id="firstname" name="firstname" value="Allendale" readonly
+              <input type="text" id="firstname" name="firstname"
+              value=""
+              readonly
               class=""/>
               <label for="firstname">Firstname</label>
             </div>
 
             <div class="input-field">
-              <input type="text" id="lastname" name="lastname" value="Nato" readonly
+              <input type="text" id="lastname" name="lastname"
+              value=""
+              readonly
               class=""/>
               <label for="lastname">Lastname</label>
             </div>
 
             <div class="input-field">
-              <input type="email" id="email" name="email" value="natoallendale@gmail.com" readonly
+              <input type="email" id="email" name="email"
+              value=""
+              readonly
               class=""/>
               <label for="email">Email</label>
             </div>
 
             <div class="input-field">
               <textarea id="address" name="address" readonly
-              class="materialize-textarea">Imus, Cavite</textarea>
+              class="materialize-textarea"></textarea>
               <label for="address">Address</label>
             </div>
 
@@ -79,7 +87,15 @@
 <script type="text/javascript" src="<?php echo base_url();?>assets/js/jquery-3.1.0.min.js"></script>
 <script type="text/javascript" src="<?php echo base_url();?>assets/js/materialize.min.js"></script>
 <script type="text/javascript">
+var $userData = <?php echo json_encode($userData)?>;
   $(document).ready(function() {
+    // Load userData
+    $('#firstname').val($userData['firstname']);
+    $('#lastname').val($userData['lastname']);
+    $('#email').val($userData['email']);
+    $('#address').val($userData['address']);
+
+
     $('#saveButton').css('visibility', 'hidden');
 
     // Edit Button click function.
@@ -129,8 +145,8 @@
 
         $('#saveButton').css('visibility', 'hidden');
 
-         Materialize.toast('Changes Saved :)', 4000);
-        // Create AJAX Here.
+        saveChanges();
+
       } else{
          Materialize.toast('Invalid Changes.', 4000);
       }
@@ -138,6 +154,34 @@
 
     });
 
+
   });
+
+  function saveChanges(){
+    $.ajax({
+      url: '<?php echo site_url('editProfile')?>',
+      type: 'POST',
+      dataType: 'json',
+      data: {
+        firstname: $('#firstname').val(),
+        lastname: $('#lastname').val(),
+        email: $('#email').val(),
+        address: $('#address').val()
+      }
+    })
+    .done(function() {
+      Materialize.toast('Changes Saved', 4000);
+    })
+    .fail(function() {
+      Materialize.toast('Error Updating', 4000);
+    })
+    .always(function() {
+      console.log("complete");
+    });
+
+  }
+
+console.log($userData['firstname']);
+
 </script>
 </html>

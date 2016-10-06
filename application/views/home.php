@@ -24,9 +24,9 @@
 
     <footer>
       <h1 class="navigation right-align">
-        <a href="<?php echo site_url();?>" class="white-text">profile</a>
+        <a href="<?php echo site_url('profile');?>" class="white-text">profile</a>
         //
-        <a href="<?php echo site_url();?>" class="white-text">logout</a>
+        <a href="<?php echo site_url('logout');?>" class="white-text">logout</a>
       </h1>
 
     </footer>
@@ -35,5 +35,8 @@
 <script type="text/javascript" src="<?php echo base_url();?>assets/js/jquery-3.1.0.min.js"></script>
 <script type="text/javascript" src="<?php echo base_url();?>assets/js/materialize.min.js"></script>
 <script type="text/javascript">
+  console.log(<?php echo json_encode($_SESSION['firstname']) ?>);
+  console.log(<?php echo json_encode($_SESSION['email']) ?>);
+  console.log(<?php echo json_encode($_SESSION['logged_in']) ?>);
 </script>
 </html>
